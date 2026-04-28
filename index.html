@@ -34,6 +34,42 @@
       --grid-bg:
         linear-gradient(var(--hero-grid-line) 1px, transparent 1px),
         linear-gradient(90deg, var(--hero-grid-line) 1px, transparent 1px);
+        --loading-bg-1: #07103a;
+      --loading-bg-2: #122675;
+      --loading-text: #ffffff;
+      --loading-track: rgba(255,255,255,0.2);
+      --loading-progress-1: #0eeef7;
+      --loading-progress-2: #55ffd6;
+      --loading-dot: #d9faff;
+
+      --badge-promo-text: #ffcf5f;
+      --badge-promo-bg: rgba(245,184,65,0.17);
+      --badge-promo-border: rgba(245,184,65,0.35);
+
+      --badge-baru-text: #67e29d;
+      --badge-baru-bg: rgba(46,203,113,0.18);
+      --badge-baru-border: rgba(46,203,113,0.38);
+
+      --stock-ok-text: #68e1a0;
+      --stock-ok-bg: rgba(46,203,113,0.15);
+      --stock-ok-border: rgba(46,203,113,0.4);
+
+      --stock-empty-text: #ff9c9c;
+      --stock-empty-bg: rgba(255,93,93,0.16);
+      --stock-empty-border: rgba(255,93,93,0.42);
+
+      --stock-soon-text: #ffd579;
+      --stock-soon-bg: rgba(245,184,65,0.16);
+      --stock-soon-border: rgba(245,184,65,0.42);
+
+      --btn-primary-text: #051230;
+      --cart-badge-text: #031031;
+      --scroll-top-text: #031031;
+      --error-text: #ffd0d0;
+      --stars: #ffd361;
+
+      --shimmer-a: color-mix(in srgb, var(--surface) 90%, #ffffff 10%);
+      --shimmer-b: color-mix(in srgb, var(--surface) 70%, #ffffff 30%);
     }
 
     * { box-sizing: border-box; }
@@ -71,21 +107,21 @@
     .loading-overlay {
       position: fixed;
       inset: 0;
-      background: linear-gradient(135deg, #07103a, #122675);
+      background: linear-gradient(135deg, var(--loading-bg-1), var(--loading-bg-2));
       z-index: 2000;
       display: grid;
       place-items: center;
       text-align: center;
-      color: #fff;
+      color: var(--loading-text);
       padding: 24px;
       transition: opacity 300ms ease, visibility 300ms ease;
     }
     .loading-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
     .loading-brand { font-family: "Syne", sans-serif; font-size: clamp(1.5rem, 5vw, 2.6rem); margin: 0 0 10px; }
-    .loading-progress-wrap { width: min(360px, 80vw); height: 10px; background: rgba(255,255,255,0.2); border-radius: 999px; overflow: hidden; margin: 16px auto 18px; }
-    .loading-progress { width: 0%; height: 100%; background: linear-gradient(90deg, #0eeef7, #55ffd6); transition: width 220ms ease; }
+    .loading-progress-wrap { width: min(360px, 80vw); height: 10px; background: var(--loading-track); border-radius: 999px; overflow: hidden; margin: 16px auto 18px; }
+    .loading-progress { width: 0%; height: 100%; background: linear-gradient(90deg, var(--loading-progress-1), var(--loading-progress-2)); transition: width 220ms ease; }
     .loading-dots { display: inline-flex; gap: 8px; align-items: center; }
-    .loading-dots span { width: 10px; height: 10px; border-radius: 50%; background: #d9faff; animation: bounce 0.9s infinite ease-in-out; }
+    .loading-dots span { width: 10px; height: 10px; border-radius: 50%; background: var(--loading-dot); animation: bounce 0.9s infinite ease-in-out; }
     .loading-dots span:nth-child(2) { animation-delay: 0.12s; }
     .loading-dots span:nth-child(3) { animation-delay: 0.24s; }
     @keyframes bounce { 0%, 80%, 100% { transform: translateY(0); opacity: 0.6; } 40% { transform: translateY(-7px); opacity: 1; } }
@@ -128,7 +164,7 @@
       height: 20px;
       border-radius: 999px;
       background: var(--accent);
-      color: #031031;
+      color: var(--cart-badge-text);
       font-size: 11px;
       font-weight: 700;
       display: grid;
@@ -179,7 +215,7 @@
       transition: transform var(--transition), filter var(--transition), border-color var(--transition), background var(--transition);
     }
     .btn:hover { transform: translateY(-1px); filter: saturate(1.1); }
-    .btn-primary { background: linear-gradient(130deg, var(--accent), color-mix(in srgb, var(--secondary) 55%, var(--accent))); color: #051230; }
+    .btn-primary { background: linear-gradient(130deg, var(--accent), color-mix(in srgb, var(--secondary) 55%, var(--accent))); color: var(--btn-primary-text); }
     .btn-outline { background: transparent; border-color: var(--border); color: var(--text); }
 
     .stats { margin-top: 32px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
@@ -232,17 +268,17 @@
 
     .badge { font-size: 12px; font-weight: 700; border-radius: 999px; padding: 4px 9px; border: 1px solid transparent; white-space: nowrap; }
     .badge.terlaris { background: rgba(14,238,247,0.16); color: var(--accent); border-color: rgba(14,238,247,0.35); }
-    .badge.promo { background: rgba(245,184,65,0.17); color: #ffcf5f; border-color: rgba(245,184,65,0.35); }
-    .badge.baru { background: rgba(46,203,113,0.18); color: #67e29d; border-color: rgba(46,203,113,0.38); }
+    .badge.promo { background: var(--badge-promo-bg); color: var(--badge-promo-text); border-color: var(--badge-promo-border); }
+    .badge.baru { background: var(--badge-baru-bg); color: var(--badge-baru-text); border-color: var(--badge-baru-border); }
 
     .service-name { margin: 0; font-weight: 700; font-size: 1.02rem; line-height: 1.35; }
     .service-desc { margin: 0; color: var(--text-muted); font-size: 0.94rem; }
     .service-price { margin: 0; font-weight: 800; font-size: 1.4rem; color: var(--accent); font-family: "Syne", sans-serif; line-height: 1.1; }
     .service-meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
     .stock { font-size: 13px; font-weight: 700; border-radius: 999px; padding: 4px 10px; border: 1px solid transparent; }
-    .stock.available { color: #68e1a0; background: rgba(46,203,113,0.15); border-color: rgba(46,203,113,0.4); }
-    .stock.empty { color: #ff9c9c; background: rgba(255,93,93,0.16); border-color: rgba(255,93,93,0.42); }
-    .stock.soon { color: #ffd579; background: rgba(245,184,65,0.16); border-color: rgba(245,184,65,0.42); }
+    .stock.available { color: var(--stock-ok-text); background: var(--stock-ok-bg); border-color: var(--stock-ok-border); }
+    .stock.empty { color: var(--stock-empty-text); background: var(--stock-empty-bg); border-color: var(--stock-empty-border); }
+    .stock.soon { color: var(--stock-soon-text); background: var(--stock-soon-bg); border-color: var(--stock-soon-border); }
 
     .pagination { margin-top: 22px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
     .page-btn { min-width: 40px; height: 40px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); color: var(--text); cursor: pointer; font-weight: 700; }
@@ -253,13 +289,13 @@
       border-radius: var(--card-radius);
       min-height: 170px;
       border: 1px solid var(--border);
-      background: linear-gradient(110deg, color-mix(in srgb, var(--surface) 90%, #ffffff 10%) 8%, color-mix(in srgb, var(--surface) 70%, #ffffff 30%) 18%, color-mix(in srgb, var(--surface) 90%, #ffffff 10%) 33%);
+      background: linear-gradient(110deg, var(--shimmer-a) 8%, var(--shimmer-b) 18%, var(--shimmer-a) 33%);
       background-size: 200% 100%;
       animation: shimmer 1.2s linear infinite;
     }
     @keyframes shimmer { to { background-position-x: -200%; } }
 
-    .error-box { border: 1px solid rgba(255,93,93,0.5); background: rgba(255,93,93,0.12); border-radius: 14px; padding: 16px; color: #ffd0d0; }
+    .error-box { border: 1px solid rgba(255,93,93,0.5); background: rgba(255,93,93,0.12); border-radius: 14px; padding: 16px; color: var(--error-text); }
     .testi-controls { margin-top: 18px; display: flex; justify-content: flex-end; gap: 8px; }
     .testi-viewport {
       margin-top: 12px;
@@ -278,7 +314,7 @@
       width: min(310px, 82vw);
       flex: 0 0 auto;
     }
-    .stars { color: #ffd361; letter-spacing: 1px; font-size: 1.06rem; margin-bottom: 10px; }
+    .stars { color: var(--stars); letter-spacing: 1px; font-size: 1.06rem; margin-bottom: 10px; }
     .quote { margin: 0 0 12px; color: var(--text-muted); font-style: italic; }
 
     .note-body { border: 1px solid var(--border); background: var(--surface); border-radius: 14px; padding: 16px; color: var(--text-muted); }
@@ -329,7 +365,7 @@
       box-shadow: var(--shadow);
       transition: transform var(--transition), opacity var(--transition);
     }
-    .scroll-top { bottom: 18px; width: 42px; height: 42px; background: var(--accent); color: #031031; font-weight: 900; opacity: 0; pointer-events: none; transform: translateY(8px); }
+    .scroll-top { bottom: 18px; width: 42px; height: 42px; background: var(--accent); color: var(--scroll-top-text); font-weight: 900; opacity: 0; pointer-events: none; transform: translateY(8px); }
     .scroll-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
 
     .promo-modal { position: fixed; inset: 0; z-index: 1300; display: none; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.72); padding: 20px; }
@@ -1541,6 +1577,56 @@
           ? alphaFromHex(c.text, 0.10)
           : alphaFromHex(c.text, 0.06)
           );
+          const themeNow = el.body.getAttribute("data-theme") || "dark";
+
+          /* loading */
+          root.style.setProperty("--loading-bg-1", shiftHex(c.bg, themeNow === "dark" ? -16 : -8));
+          root.style.setProperty("--loading-bg-2", shiftHex(c.secondary, themeNow === "dark" ? -8 : 10));
+          root.style.setProperty("--loading-text", c.text);
+          root.style.setProperty("--loading-track", alphaFromHex(c.text, themeNow === "dark" ? 0.22 : 0.18));
+          root.style.setProperty("--loading-progress-1", c.accent);
+          root.style.setProperty("--loading-progress-2", c.secondary);
+          root.style.setProperty("--loading-dot", alphaFromHex(c.text, themeNow === "dark" ? 0.92 : 0.75));
+
+          /* foreground text on accent surfaces */
+          root.style.setProperty("--btn-primary-text", shiftHex(c.bg, -8));
+          root.style.setProperty("--cart-badge-text", shiftHex(c.bg, -8));
+          root.style.setProperty("--scroll-top-text", shiftHex(c.bg, -8));
+
+          /* badges from sheet colors */
+          root.style.setProperty("--badge-promo-text", c.secondary);
+          root.style.setProperty("--badge-promo-bg", alphaFromHex(c.secondary, 0.18));
+          root.style.setProperty("--badge-promo-border", alphaFromHex(c.secondary, 0.36));
+
+          root.style.setProperty("--badge-baru-text", c.accent);
+          root.style.setProperty("--badge-baru-bg", alphaFromHex(c.accent, 0.18));
+          root.style.setProperty("--badge-baru-border", alphaFromHex(c.accent, 0.36));
+
+          /* stock colors from sheet tonal variants */
+          const stockOk = shiftHex(c.accent, themeNow === "dark" ? 20 : -10);
+          const stockSoon = shiftHex(c.secondary, themeNow === "dark" ? 24 : -6);
+          const stockEmpty = shiftHex(c.secondary, -70);
+
+          root.style.setProperty("--stock-ok-text", stockOk);
+          root.style.setProperty("--stock-ok-bg", alphaFromHex(stockOk, 0.16));
+          root.style.setProperty("--stock-ok-border", alphaFromHex(stockOk, 0.42));
+
+          root.style.setProperty("--stock-empty-text", stockEmpty);
+          root.style.setProperty("--stock-empty-bg", alphaFromHex(stockEmpty, 0.16));
+          root.style.setProperty("--stock-empty-border", alphaFromHex(stockEmpty, 0.42));
+
+          root.style.setProperty("--stock-soon-text", stockSoon);
+          root.style.setProperty("--stock-soon-bg", alphaFromHex(stockSoon, 0.16));
+          root.style.setProperty("--stock-soon-border", alphaFromHex(stockSoon, 0.42));
+
+          /* misc ui from sheet */
+          root.style.setProperty("--error-text", shiftHex(c.secondary, themeNow === "dark" ? 70 : -30));
+          root.style.setProperty("--stars", shiftHex(c.accent, themeNow === "dark" ? 38 : -10));
+
+          /* shimmer from surface + text */
+          root.style.setProperty("--shimmer-a", `color-mix(in srgb, ${c.surface} 90%, ${c.text} 10%)`);
+          root.style.setProperty("--shimmer-b", `color-mix(in srgb, ${c.surface} 72%, ${c.text} 28%)`);
+
         };
 
         if ((el.body.getAttribute("data-theme") || "dark") === "dark") applyVars(dark);
@@ -1659,3 +1745,4 @@
   </script>
 </body>
 </html>
+
